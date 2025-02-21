@@ -1,0 +1,7 @@
+/vendor/
+composer.lock
+.phpunit.cache
+.pint.json
+phpstan.neon
+rector.php
+.idea/

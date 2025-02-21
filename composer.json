@@ -1,0 +1,36 @@
+{
+    "name": "fintrack/laravel-open-banking",
+    "description": "Laravel SDK for integrating open banking 3rd party services (e.g., Tink, Plaid, TrueLayer)",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Fintrack\\LaravelOpenBanking\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Golluméo",
+            "email": "p.mauriello54@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "illuminate/support": "^11.43",
+        "illuminate/config": "^11.43",
+        "illuminate/http": "^11.43"
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.7",
+        "pestphp/pest-plugin-laravel": "^3.1",
+        "laravel/pint": "^1.21",
+        "rector/rector": "^2.0",
+        "friendsofphp/php-cs-fixer": "^3.69",
+        "pestphp/pest-plugin": "^3.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
