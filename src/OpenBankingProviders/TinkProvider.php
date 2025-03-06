@@ -4,4 +4,15 @@ declare(strict_types=1);
 
 namespace Fintrack\LaravelOpenBanking\OpenBankingProviders;
 
-final class TinkProvider {}
+use Fintrack\LaravelOpenBanking\Contracts\OpenBankingProviderContract;
+
+final class TinkProvider implements OpenBankingProviderContract
+{
+    /**
+     * @return string[]
+     */
+    public function getTransactions(): array
+    {
+        return [];
+    }
+}

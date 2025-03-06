@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
+use Fintrack\LaravelOpenBanking\Contracts\OpenBankingProviderContract;
 use Fintrack\LaravelOpenBanking\OpenBankingProviders\TinkProvider;
 use Support\OpenBankingProvidersHelper;
+use Tests\TestCase;
 
-describe('OpenBankingProvider', function () {
+describe('OpenBanking namespaces', function () {
     it('should be able to fetch providers namespaces', function () {
         $providers = OpenBankingProvidersHelper::getProviders();
 
@@ -14,10 +16,23 @@ describe('OpenBankingProvider', function () {
             expect($provider)->toBeClass();
         }
     });
+});
+
+describe('OpenBankingProvider', function () {
+    pest()->extend(TestCase::class);
+
+    beforeEach(function () {
+        $this->providerClass = TinkProvider::class;
+        $this->provider = new TinkProvider();
+    });
 
     it('should implement `OpenBankingProviderContract`', function () {
-        $provider = new TinkProvider();
-        todo('create contract');
-        expect($provider)->toBeInstanceOf(OpenBankingProviderContract::class);
+        expect($this->providerClass)->toImplement(OpenBankingProviderContract::class);
+    });
+
+    it('should be able to retrieve transactions', function () {
+        expect($this->providerClass)->toHaveMethod('getTransactions');
+        $transactions = $this->provider->getTransactions();
+        expect($transactions)->toBeArray();
     });
 });
