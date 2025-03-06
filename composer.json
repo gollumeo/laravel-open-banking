@@ -8,6 +8,12 @@
             "Fintrack\\LaravelOpenBanking\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/",
+            "Support\\": "tests/Support/"
+        }
+    },
     "authors": [
         {
             "name": "Golluméo",
