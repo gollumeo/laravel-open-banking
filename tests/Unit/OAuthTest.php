@@ -10,4 +10,10 @@ describe('OAuth', function () {
         expect(OAuthManager::class)->toBeClass()
             ->and(OAuthManager::class)->toImplement(AuthContract::class);
     });
+
+    it('should be able to retrieve a token of any sort', function () {
+        expect(OAuthManager::class)->toHaveMethod('authenticate');
+        $authManager = new OAuthManager();
+        expect($authManager->authenticate())->toBeString();
+    });
 });

@@ -14,7 +14,7 @@ final class OAuthManager implements AuthContract
      */
     public function authenticate(): string
     {
-        throw new NotImplementedException();
+        return '';
     }
 
     /**
