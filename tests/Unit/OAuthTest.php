@@ -11,7 +11,7 @@ describe('OAuth', function () {
             ->and(OAuthManager::class)->toImplement(AuthContract::class);
     });
 
-    it('should be able to retrieve a token of any sort', function () {
+    it('should return a string when calling `authenticate`', function () {
         expect(OAuthManager::class)->toHaveMethod('authenticate');
         $authManager = new OAuthManager();
         expect($authManager->authenticate())->toBeString();
