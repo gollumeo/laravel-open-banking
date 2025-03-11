@@ -31,7 +31,6 @@ describe('OpenBankingProvider', function () {
     });
 
     it('should be able to retrieve transactions', function () {
-        expect($this->providerClass)->toHaveMethod('getTransactions');
         $transactions = $this->provider->getTransactions();
         expect($transactions)->toBeArray();
     });
