@@ -16,6 +16,14 @@ describe('OpenBanking namespaces', function () {
             expect($provider)->toBeClass();
         }
     });
+
+    it('should return valid provider instances', function () {
+        $providers = OpenBankingProvidersHelper::getProviders();
+        foreach ($providers as $provider) {
+            $instance = new $provider();
+            expect($instance)->toBeInstanceOf(OpenBankingProviderContract::class);
+        }
+    });
 });
 
 describe('OpenBankingProvider', function () {
