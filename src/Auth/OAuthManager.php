@@ -5,16 +5,20 @@ declare(strict_types=1);
 namespace Fintrack\LaravelOpenBanking\Auth;
 
 use Fintrack\LaravelOpenBanking\Contracts\AuthContract;
-use Nette\NotImplementedException;
 
 final class OAuthManager implements AuthContract
 {
+    private bool $isAuthenticated = false;
+
     /**
      * {@inheritDoc}
      */
     public function authenticate(): string
     {
-        return '';
+        $token = '';
+        $this->isAuthenticated = true;
+
+        return $token;
     }
 
     /**
@@ -22,7 +26,7 @@ final class OAuthManager implements AuthContract
      */
     public function isAuthenticated(): bool
     {
-        throw new NotImplementedException();
+        return $this->isAuthenticated;
     }
 
     /**
@@ -30,6 +34,8 @@ final class OAuthManager implements AuthContract
      */
     public function revoke(): bool
     {
-        throw new NotImplementedException();
+        $this->isAuthenticated = false;
+
+        return true;
     }
 }
