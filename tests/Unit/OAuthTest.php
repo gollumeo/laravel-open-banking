@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 use Fintrack\LaravelOpenBanking\Auth\OAuthManager;
 use Fintrack\LaravelOpenBanking\Contracts\AuthContract;
+use Support\Fakes\FakeOAuthClient;
 
 describe('OAuth', function () {
     it('should implement `AuthContract`', function () {
         expect(OAuthManager::class)->toImplement(AuthContract::class);
+        expect(FakeOAuthClient::class)->toImplement(AuthContract::class);
     });
 
     beforeEach(function () {
-        $this->authManager = new OAuthManager();
+        $this->authManager = new FakeOAuthClient();
     });
 
     it('should return a string when calling `authenticate`', function () {
