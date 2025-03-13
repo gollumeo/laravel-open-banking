@@ -8,8 +8,8 @@ use Support\Fakes\FakeOAuthClient;
 
 describe('OAuth', function () {
     it('should implement `AuthContract`', function () {
-        expect(OAuthManager::class)->toImplement(AuthContract::class);
-        expect(FakeOAuthClient::class)->toImplement(AuthContract::class);
+        expect(OAuthManager::class)->toImplement(AuthContract::class)
+            ->and(FakeOAuthClient::class)->toImplement(AuthContract::class);
     });
 
     beforeEach(function () {
