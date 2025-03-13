@@ -12,10 +12,6 @@ describe('OAuth', function () {
             ->and(FakeOAuthClient::class)->toImplement(AuthContract::class);
     });
 
-    beforeEach(function () {
-        $this->authManager = new FakeOAuthClient();
-    });
-
     it('should return a string when calling `authenticate`', function () {
         expect($this->authManager->authenticate())->toBeString();
     });
@@ -37,5 +33,9 @@ describe('OAuth', function () {
         $this->authManager->authenticate();
         $this->authManager->revoke();
         expect($this->authManager->isAuthenticated())->toBeFalse();
+    });
+
+    it('should return false if revoking without prior authentication', function () {
+        expect($this->authManager->revoke())->toBeFalse();
     });
 });

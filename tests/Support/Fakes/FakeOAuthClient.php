@@ -4,17 +4,26 @@ declare(strict_types=1);
 
 namespace Support\Fakes;
 
+use Exception;
 use Fintrack\LaravelOpenBanking\Contracts\AuthContract;
-use Nette\NotImplementedException;
 
 final class FakeOAuthClient implements AuthContract
 {
+    private bool $isAuthenticated = false;
+
     /**
      * {@inheritDoc}
      */
     public function authenticate(): string
     {
-        throw new NotImplementedException();
+        try {
+            sleep(1);
+            $this->isAuthenticated = true;
+        } catch (Exception $exception) {
+            return $exception->getMessage();
+        }
+
+        return 'fake-token-123';
     }
 
     /**
@@ -22,7 +31,7 @@ final class FakeOAuthClient implements AuthContract
      */
     public function isAuthenticated(): bool
     {
-        throw new NotImplementedException();
+        return $this->isAuthenticated;
     }
 
     /**
@@ -30,6 +39,12 @@ final class FakeOAuthClient implements AuthContract
      */
     public function revoke(): bool
     {
-        throw new NotImplementedException();
+        if (! $this->isAuthenticated) {
+            return false;
+        }
+
+        $this->isAuthenticated = false;
+
+        return true;
     }
 }
