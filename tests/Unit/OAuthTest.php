@@ -16,10 +16,6 @@ describe('OAuth', function () {
         expect($this->authManager->authenticate())->toBeString();
     });
 
-    it('should return a fake token', function () {
-        expect($this->authManager->authenticate())->toBe('fake-token-123');
-    });
-
     it('should not be authenticated by default', function () {
         expect($this->authManager->isAuthenticated())->toBeFalse();
     });
@@ -37,5 +33,11 @@ describe('OAuth', function () {
 
     it('should return false if revoking without prior authentication', function () {
         expect($this->authManager->revoke())->toBeFalse();
+    });
+});
+
+describe('OAuth Mocking', function () {
+    it('should return a fake token', function () {
+        expect($this->authManager->authenticate())->toBe('fake-token-123');
     });
 });
