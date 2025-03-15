@@ -38,6 +38,6 @@ describe('OAuth', function () {
 
 describe('OAuth Mocking', function () {
     it('should return a fake token', function () {
-        expect($this->authManager->authenticate())->toBe('fake-token-123');
+        expect($this->fakeAuthManager->authenticate())->toBe('fake-token-123');
     });
 });
