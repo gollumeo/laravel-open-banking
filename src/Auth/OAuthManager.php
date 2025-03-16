@@ -24,18 +24,18 @@ final class OAuthManager implements AuthContract
     /**
      * {@inheritDoc}
      */
-    public function isAuthenticated(): bool
+    public function revoke(): bool
     {
+        $this->isAuthenticated = false;
+
         return $this->isAuthenticated;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function revoke(): bool
+    public function isAuthenticated(): bool
     {
-        $this->isAuthenticated = false;
-
-        return true;
+        return $this->isAuthenticated;
     }
 }

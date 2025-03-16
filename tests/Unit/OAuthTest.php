@@ -7,6 +7,10 @@ use Fintrack\LaravelOpenBanking\Contracts\AuthContract;
 use Support\Fakes\FakeOAuthClient;
 
 describe('OAuth', function () {
+    beforeEach(function () {
+        $this->authManager = new OAuthManager();
+    });
+
     it('should implement `AuthContract`', function () {
         expect(OAuthManager::class)->toImplement(AuthContract::class)
             ->and(FakeOAuthClient::class)->toImplement(AuthContract::class);
@@ -37,6 +41,10 @@ describe('OAuth', function () {
 });
 
 describe('OAuth Mocking', function () {
+    beforeEach(function () {
+        $this->fakeAuthManager = new FakeOAuthClient();
+    });
+
     it('should return a fake token', function () {
         expect($this->fakeAuthManager->authenticate())->toBe('fake-token-123');
     });
