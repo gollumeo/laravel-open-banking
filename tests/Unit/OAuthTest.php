@@ -48,4 +48,8 @@ describe('OAuth Mocking', function () {
     it('should return a fake token', function () {
         expect($this->fakeAuthManager->authenticate())->toBe('fake-token-123');
     });
+
+    it('should not be authenticated by default', function () {
+        expect($this->fakeAuthManager->isAuthenticated())->toBeFalse();
+    });
 });
