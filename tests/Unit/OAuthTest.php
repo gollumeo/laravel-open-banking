@@ -52,4 +52,9 @@ describe('OAuth Mocking', function () {
     it('should not be authenticated by default', function () {
         expect($this->fakeAuthManager->isAuthenticated())->toBeFalse();
     });
+
+    it('should return true after authentication', function () {
+        $this->fakeAuthManager->authenticate();
+        expect($this->fakeAuthManager->isAuthenticated())->toBeTrue();
+    });
 });
