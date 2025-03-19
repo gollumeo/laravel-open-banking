@@ -57,4 +57,10 @@ describe('OAuth Mocking', function () {
         $this->fakeAuthManager->authenticate();
         expect($this->fakeAuthManager->isAuthenticated())->toBeTrue();
     });
+
+    it('should not be authenticated after revoking authentication', function () {
+        $this->fakeAuthManager->authenticate();
+        $this->fakeAuthManager->revoke();
+        expect($this->fakeAuthManager->isAuthenticated())->toBeFalse();
+    });
 });
