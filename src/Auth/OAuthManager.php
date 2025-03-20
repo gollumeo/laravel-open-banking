@@ -15,7 +15,7 @@ final class OAuthManager implements AuthContract
      */
     public function authenticate(): string
     {
-        $token = '';
+        $token = 'fake-token-123';
         $this->isAuthenticated = true;
 
         return $token;
@@ -26,9 +26,13 @@ final class OAuthManager implements AuthContract
      */
     public function revoke(): bool
     {
+        if (! $this->isAuthenticated) {
+            return false;
+        }
+
         $this->isAuthenticated = false;
 
-        return $this->isAuthenticated;
+        return true;
     }
 
     /**
