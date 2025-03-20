@@ -10,7 +10,7 @@ describe('OAuth', function () {
         $this->authManager = new OAuthManager();
     });
 
-    it('should implement `AuthContract`', function () {
+    it('should act as an Adapter for Tink and implement `AuthContract`', function () {
         expect(OAuthManager::class)->toImplement(AuthContract::class);
     });
 
