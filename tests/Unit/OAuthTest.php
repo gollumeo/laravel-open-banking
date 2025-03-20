@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use Fintrack\LaravelOpenBanking\Auth\OAuthManager;
 use Fintrack\LaravelOpenBanking\Contracts\AuthContract;
-use Support\Fakes\FakeOAuthClient;
 
 describe('OAuth', function () {
     beforeEach(function () {
@@ -12,8 +11,7 @@ describe('OAuth', function () {
     });
 
     it('should implement `AuthContract`', function () {
-        expect(OAuthManager::class)->toImplement(AuthContract::class)
-            ->and(FakeOAuthClient::class)->toImplement(AuthContract::class);
+        expect(OAuthManager::class)->toImplement(AuthContract::class);
     });
 
     it('should return a string when calling `authenticate`', function () {
@@ -24,7 +22,8 @@ describe('OAuth', function () {
         expect($this->authManager->isAuthenticated())->toBeFalse();
     });
 
-    it('should return true after authentication', function () {
+    it('should update authentication state after authenticating', function () {
+        expect($this->authManager->isAuthenticated())->toBeFalse();
         $this->authManager->authenticate();
         expect($this->authManager->isAuthenticated())->toBeTrue();
     });
@@ -35,32 +34,9 @@ describe('OAuth', function () {
         expect($this->authManager->isAuthenticated())->toBeFalse();
     });
 
-    it('should return false if revoking without prior authentication', function () {
-        expect($this->authManager->revoke())->toBeFalse();
-    });
-});
-
-describe('OAuth Mocking', function () {
-    beforeEach(function () {
-        $this->fakeAuthManager = new FakeOAuthClient();
-    });
-
-    it('should return a fake token', function () {
-        expect($this->fakeAuthManager->authenticate())->toBe('fake-token-123');
-    });
-
-    it('should not be authenticated by default', function () {
-        expect($this->fakeAuthManager->isAuthenticated())->toBeFalse();
-    });
-
-    it('should return true after authentication', function () {
-        $this->fakeAuthManager->authenticate();
-        expect($this->fakeAuthManager->isAuthenticated())->toBeTrue();
-    });
-
-    it('should not be authenticated after revoking authentication', function () {
-        $this->fakeAuthManager->authenticate();
-        $this->fakeAuthManager->revoke();
-        expect($this->fakeAuthManager->isAuthenticated())->toBeFalse();
+    it('should remain unauthenticated if revoking without prior authentication', function () {
+        expect($this->authManager->isAuthenticated())->toBeFalse()
+            ->and($this->authManager->revoke())->toBeFalse()
+            ->and($this->authManager->isAuthenticated())->toBeFalse();
     });
 });

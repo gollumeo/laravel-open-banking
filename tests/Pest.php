@@ -13,9 +13,7 @@ declare(strict_types=1);
 |
 */
 
-use Tests\TestCase;
-
-pest()->extend(TestCase::class);
+uses(Tests\TestCase::class)->in(__DIR__);
 
 /*
 |--------------------------------------------------------------------------
