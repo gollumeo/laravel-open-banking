@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Fintrack\LaravelOpenBanking\Auth\OAuthManager;
 use Fintrack\LaravelOpenBanking\Contracts\AuthContract;
 
-describe('High Level Abstraction', function () {
+describe('High Level & Abstraction', function () {
     beforeEach(function () {
         $this->authManager = new OAuthManager();
     });
