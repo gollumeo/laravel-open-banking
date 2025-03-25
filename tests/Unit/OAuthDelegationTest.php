@@ -2,10 +2,17 @@
 
 declare(strict_types=1);
 
+use Fintrack\LaravelOpenBanking\OpenBankingProviders\TinkProvider;
+use Support\Fakes\FakeTinkOAuthClient;
+
 describe('OAuth Delegation', function () {
-    it('should delegate authentication to the injected provider', function () {
-        expect($this->authManager->authenticate())->toBe('some-dummy-token')
-            ->and($this->authManager->isAuthenticated())->toBeTrue()
-            ->and($this->authManager->revoke())->toBeTrue();
+    beforeEach(function () {
+        $this->fakeOAuthClient = new FakeTinkOAuthClient();
+        $this->provider = new TinkProvider($this->fakeOAuthClient);
+    });
+
+    it('should delegate OAuth calls to the injected OAuth provider', function () {
+        expect($this->provider->getTransactions())->toBeArray()
+            ->and($this->fakeOAuthClient->wasCalled('getAccessToken'))->toBeTrue();
     });
 });
