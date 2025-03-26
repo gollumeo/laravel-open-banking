@@ -7,7 +7,7 @@ namespace Fintrack\LaravelOpenBanking\Contracts;
 interface AuthContract
 {
     /**
-     * Authenticates the user and returns a token.
+     * Authenticates the user and returns a credential (token, session, key, etc.).
      *
      * @return string The authentication token.
      */
@@ -26,4 +26,11 @@ interface AuthContract
      * @return bool True if the token was successfully revoked, false otherwise.
      */
     public function revoke(): bool;
+
+    /**
+     * Refreshes the credentials (token, session, key, etc.).
+     *
+     * @return string The new authentication credentials.
+     */
+    public function refresh(): string;
 }
