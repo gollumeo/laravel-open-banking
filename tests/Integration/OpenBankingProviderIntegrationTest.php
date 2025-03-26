@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Fintrack\LaravelOpenBanking\Contracts\OpenBankingProviderContract;
 use Fintrack\LaravelOpenBanking\OpenBankingProviders\TinkProvider;
+use Support\Fakes\FakeTinkOAuthClient;
 use Support\OpenBankingProvidersHelper;
 
 describe('OpenBanking namespaces', function () {
@@ -19,7 +20,7 @@ describe('OpenBanking namespaces', function () {
     it('should return valid provider instances', function () {
         $providers = OpenBankingProvidersHelper::getProviders();
         foreach ($providers as $provider) {
-            $instance = new $provider();
+            $instance = new $provider(new FakeTinkOAuthClient());
             expect($instance)->toBeInstanceOf(OpenBankingProviderContract::class);
         }
     });
@@ -28,7 +29,7 @@ describe('OpenBanking namespaces', function () {
 describe('OpenBankingProvider', function () {
     beforeEach(function () {
         $this->providerClass = TinkProvider::class;
-        $this->provider = new TinkProvider();
+        $this->provider = new TinkProvider(new FakeTinkOAuthClient());
     });
 
     it('should implement `OpenBankingProviderContract`', function () {
