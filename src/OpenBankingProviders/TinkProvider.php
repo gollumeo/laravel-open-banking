@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Fintrack\LaravelOpenBanking\OpenBankingProviders;
 
-use Fintrack\LaravelOpenBanking\Contracts\OAuthProviderContract;
+use Fintrack\LaravelOpenBanking\Contracts\AuthContract;
 use Fintrack\LaravelOpenBanking\Contracts\OpenBankingProviderContract;
 
-final class TinkProvider implements OpenBankingProviderContract
+final readonly class TinkProvider implements OpenBankingProviderContract
 {
     public function __construct(
-        private OAuthProviderContract $oauth
+        private AuthContract $oauth
     ) {}
 
     /**
@@ -18,7 +18,7 @@ final class TinkProvider implements OpenBankingProviderContract
      */
     public function getTransactions(): array
     {
-        $accessToken = $this->oauth->getAccessToken();
+        $accessToken = $this->oauth->authenticate();
 
         return [
             'token_used' => $accessToken,
