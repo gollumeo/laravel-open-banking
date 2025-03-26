@@ -13,6 +13,6 @@ describe('OAuth Delegation', function () {
 
     it('should delegate OAuth calls to the injected OAuth provider', function () {
         expect($this->provider->getTransactions())->toBeArray()
-            ->and($this->fakeOAuthClient->wasCalled('getAccessToken'))->toBeTrue();
+            ->and($this->fakeOAuthClient->wasCalled('authenticate'))->toBeTrue();
     });
 });
