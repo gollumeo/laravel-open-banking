@@ -4,19 +4,26 @@ declare(strict_types=1);
 
 namespace Support\Fakes;
 
-use Fintrack\LaravelOpenBanking\Contracts\OAuthProviderContract;
+use Fintrack\LaravelOpenBanking\Contracts\AuthContract;
 
-final class FakeTinkOAuthClient implements OAuthProviderContract
+final class FakeTinkOAuthClient implements AuthContract
 {
+    /** @var array<string> */
     private array $calls = [];
 
-    public function getAccessToken(): string
+    /**
+     * {@inheritDoc}
+     */
+    public function authenticate(): string
     {
-        $this->calls[] = 'getAccessToken';
+        $this->calls[] = 'authenticate';
 
         return 'dummy-access-token';
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function isAuthenticated(): bool
     {
         $this->calls[] = 'isAuthenticated';
@@ -24,11 +31,22 @@ final class FakeTinkOAuthClient implements OAuthProviderContract
         return true;
     }
 
-    public function revokeToken(): bool
+    /**
+     * {@inheritDoc}
+     */
+    public function revoke(): bool
     {
-        $this->calls[] = 'revokeToken';
+        $this->calls[] = 'revoke';
 
         return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function refresh(): string
+    {
+        return 'new-dummy-token';
     }
 
     public function wasCalled(string $method): bool
