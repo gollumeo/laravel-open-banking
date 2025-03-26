@@ -42,4 +42,12 @@ final class OAuthManager implements AuthContract
     {
         return $this->isAuthenticated;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function refresh(): string
+    {
+        return 'new-fake-token';
+    }
 }
