@@ -8,6 +8,8 @@ use Fintrack\LaravelOpenBanking\Contracts\AuthContract;
 
 final class FakeTinkOAuthClient implements AuthContract
 {
+    public string $token;
+
     /** @var array<string> */
     private array $calls = [];
 
@@ -52,5 +54,10 @@ final class FakeTinkOAuthClient implements AuthContract
     public function wasCalled(string $method): bool
     {
         return in_array($method, $this->calls);
+    }
+
+    public function hasTokenExpired(): bool
+    {
+        return true;
     }
 }
