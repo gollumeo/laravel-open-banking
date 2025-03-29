@@ -19,8 +19,9 @@ final class FakeTinkOAuthClient implements AuthContract
     public function authenticate(): string
     {
         $this->calls[] = 'authenticate';
+        $this->token = 'dummy-access-token';
 
-        return 'dummy-access-token';
+        return $this->token;
     }
 
     /**
