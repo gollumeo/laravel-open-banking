@@ -13,6 +13,8 @@ final class FakeTinkOAuthClient implements AuthContract
     /** @var array<string> */
     private array $calls = [];
 
+    private bool $isAuthenticated;
+
     /**
      * {@inheritDoc}
      */
@@ -30,8 +32,9 @@ final class FakeTinkOAuthClient implements AuthContract
     public function isAuthenticated(): bool
     {
         $this->calls[] = 'isAuthenticated';
+        $this->isAuthenticated = true;
 
-        return true;
+        return $this->isAuthenticated;
     }
 
     /**
