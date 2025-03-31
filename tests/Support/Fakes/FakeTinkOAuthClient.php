@@ -8,7 +8,7 @@ use Fintrack\LaravelOpenBanking\Contracts\AuthContract;
 
 final class FakeTinkOAuthClient implements AuthContract
 {
-    public string $token;
+    private ?string $token;
 
     /** @var array<string> */
     private array $calls = [];
@@ -22,6 +22,7 @@ final class FakeTinkOAuthClient implements AuthContract
     {
         $this->calls[] = 'authenticate';
         $this->token = 'dummy-access-token';
+        $this->isAuthenticated = true;
 
         return $this->token;
     }
@@ -43,6 +44,7 @@ final class FakeTinkOAuthClient implements AuthContract
     public function revoke(): bool
     {
         $this->calls[] = 'revoke';
+        $this->token = null;
 
         return true;
     }
@@ -52,7 +54,9 @@ final class FakeTinkOAuthClient implements AuthContract
      */
     public function refresh(): string
     {
-        return 'new-dummy-token';
+        $this->token = 'new-dummy-token';
+
+        return $this->token;
     }
 
     public function wasCalled(string $method): bool

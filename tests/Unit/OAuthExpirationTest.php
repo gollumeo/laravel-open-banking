@@ -12,8 +12,9 @@ describe('OAuth token expiration', function () {
         $this->fakeOAuthClient->authenticate();
 
         todo('correct & implement this expiration feature');
-        expect($this->fakeOAuthClient->token)->toBeString()
-            ->and($this->fakeOAuthClient->token)->toBe('dummy-access-token')
-            ->and($this->fakeOAuthClient->hasTokenExpired())->toBeTrue();
+        expect($this->fakeOAuthClient->authenticate())->toBeString()
+            ->and($this->fakeOAuthClient->authenticate())->toBe('dummy-access-token')
+            ->and($this->fakeOAuthClient->hasTokenExpired())->toBeTrue()
+            ->and($this->fakeOAuthClient)->toHaveProperty('token');
     });
 });
