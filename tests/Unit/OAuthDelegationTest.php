@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Fintrack\LaravelOpenBanking\OpenBankingProviders\TinkProvider;
 use Support\Fakes\FakeTinkOAuthClient;
 
-describe('OAuth Delegation', function () {
+describe('Unit: OpenBankingProvider OAuth Delegation', function () {
     beforeEach(function () {
         $this->fakeOAuthClient = new FakeTinkOAuthClient();
         $this->provider = new TinkProvider($this->fakeOAuthClient);
