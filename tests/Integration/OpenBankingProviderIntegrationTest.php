@@ -7,7 +7,7 @@ use Fintrack\LaravelOpenBanking\OpenBankingProviders\TinkProvider;
 use Support\Fakes\FakeTinkOAuthClient;
 use Support\OpenBankingProvidersHelper;
 
-describe('OpenBanking namespaces', function () {
+describe('Unit: OpenBanking namespaces', function () {
     it('should be able to fetch providers namespaces', function () {
         $providers = OpenBankingProvidersHelper::getProviders();
 
