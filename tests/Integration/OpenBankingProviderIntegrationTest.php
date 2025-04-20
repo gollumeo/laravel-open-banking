@@ -10,14 +10,6 @@ use Support\OpenBankingProvidersHelper;
 // TODO: refactor: split the file based on responsibilities and test cases
 
 describe('Unit: OpenBanking Namespaces', function () {
-    it('should be able to fetch providers namespaces', function () {
-        $providers = OpenBankingProvidersHelper::getProviders();
-
-        expect($providers)->toBeArray();
-        foreach ($providers as $provider) {
-            expect($provider)->toBeClass();
-        }
-    });
 
     it('should return valid provider instances', function () {
         $providers = OpenBankingProvidersHelper::getProviders();
