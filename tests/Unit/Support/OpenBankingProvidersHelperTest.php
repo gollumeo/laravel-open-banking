@@ -12,3 +12,11 @@ it('should be able to fetch providers namespaces', function () {
         expect($provider)->toBeClass();
     }
 });
+
+it('should return valid provider instances', function () {
+    $providers = OpenBankingProvidersHelper::getProviders();
+    foreach ($providers as $provider) {
+        $instance = new $provider(new FakeTinkOAuthClient());
+        expect($instance)->toBeInstanceOf(OpenBankingProviderContract::class);
+    }
+});
