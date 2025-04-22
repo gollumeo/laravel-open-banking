@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Fintrack\LaravelOpenBanking\Contracts\OpenBankingProviderContract;
+use Support\Fakes\FakeTinkOAuthClient;
 use Support\OpenBankingProvidersHelper;
 
 it('should be able to fetch providers namespaces', function () {
