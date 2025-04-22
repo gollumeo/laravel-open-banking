@@ -6,3 +6,4 @@ rector.php
 .idea/
 .run/
 tink_internal_doc_updated.md
+.env

@@ -32,7 +32,8 @@
         "laravel/pint": "^1.21",
         "rector/rector": "^2.0",
         "friendsofphp/php-cs-fixer": "^3.69",
-        "pestphp/pest-plugin": "^3.0"
+        "pestphp/pest-plugin": "^3.0",
+        "orchestra/testbench": "^9.13"
     },
     "config": {
         "allow-plugins": {
