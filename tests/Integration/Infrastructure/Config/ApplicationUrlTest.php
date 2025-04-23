@@ -13,7 +13,7 @@ describe('Unit: Application URL', function () {
 
     it('should throw an IllegalArgumentException if the app.url key does not exist', function () {
         config(['app.url' => 123]);
-
+        // lambda
         expect(fn () => ApplicationUrl::fromConfig())->toThrow(InvalidArgumentException::class);
     });
 });
