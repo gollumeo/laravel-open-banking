@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Fintrack\LaravelOpenBanking\Auth\OpenBankingAuth;
-use Fintrack\LaravelOpenBanking\Infrastructure\Config\ApplicationUrl;
+use Fintrack\LaravelOpenBanking\Infrastructure\Config\ApplicationUrls;
 
 describe('Feature: Generic Authentication', function () {
     it('should have access to a redirect URL when initiating authentication flow', function () {
@@ -25,7 +25,7 @@ describe('Feature: Generic Authentication', function () {
     });
 
     it('should return a valid, app-based redirect URL when initiating authentication flow', function () {
-        $appUrlPrefix = ApplicationUrl::fromConfig();
+        $appUrlPrefix = ApplicationUrls::getApplicationPrefix();
         $expectedUrl = $appUrlPrefix.'/oauth-redirect';
 
         // Given
